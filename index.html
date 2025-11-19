@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>আজকের  অফার - InFocusNewsToday24</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .news-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #f9fafb;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    min-height: 220px;
+  }
+  .news-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+  }
+  .news-card:hover {
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+  }
+  .list-card {
+    flex-direction: row;
+    min-height: 100px;
+  }
+  .list-card img {
+    width: 120px;
+    height: 80px;
+    margin-right: 1rem;
+  }
+  .toggle-btn {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+  }
+  .grid-btn {
+    background: linear-gradient(90deg, #1E3A8A, #3B82F6);
+    color: white;
+  }
+  .list-btn {
+    background: linear-gradient(90deg, #047857, #10B981);
+    color: white;
+  }
+  .header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .digital-clock-container {
+    text-align: center;
+  }
+  .time-of-day {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #f59e0b;
+  }
+  .digital-clock {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1E3A8A;
+  }
+</style>
+</head>
+<body class="bg-white text-gray-900">
+<div class="max-w-5xl mx-auto px-4 py-8">
+
+  <!-- Header -->
+  <div class="header-bar">
+    <div class="digital-clock-container">
+      <div class="time-of-day" id="timeOfDay">এখন সকাল</div>
+      <div class="digital-clock" id="digitalClock">00:00:00 AM</div>
+    </div>
+    <h1 class="text-3xl font-bold text-center mb-10 text-blue-700 flex-1">আজকের  অফার</h1>
+  </div>
+
+  <!-- View Toggle -->
+  <div class="flex justify-end gap-2 mb-6">
+    <button id="gridBtn" class="toggle-btn grid-btn">Grid View</button>
+    <button id="listBtn" class="toggle-btn list-btn">List View</button>
+  </div>
+
+  <div id="categories">
+
+    <!-- ইন্টারনেট প্যাকেজ  -->
+    <div class="category-container mb-8">
+      <h2 class="text-2xl font-semibold text-red-600 mb-4 border-b-2 border-red-400 pb-1">ইন্টারনেট প্যাকেজ</h2>
+      <div class="news-container news-grid" id="internet-packages">
+
+        <a href="https://www.grameenphone.com/bn/personal/plans-offers/internet-packages" target="_blank" class="news-card">
+          <img src="https://cdn01da.grameenphone.com/sites/default/files/2024-04/GP_About_Logo_tile_image%20(1).jpg"         
+           alt="Grameenphone">
+          <div class="p-4">
+            <h3 class="text-lg font-semibold mb-1 hover:text-blue-600">ইন্টারনেট প্যাকেজ</h3>
+            <p class="text-gray-600 text-sm">www.grameenphone.com</p>
+          <p class="text-gray-600 text-sm auto-date"></p>
+          </div>
+        </a>
+
+        <a href="https://www.banglalink.net/bn/prepaid/internet" class="news-card">
+          <img src="https://cdn.jvectors.com/upload/photos/2023/06/xbdQcJHl48Zo4h8hXhqq_20_298c794f03b860d547ccc2df3950f5b3_jvectors_thumbnail.webp?updated=1743052394" alt="Banglalink">
+          <div class="p-4">
+            <h3 class="text-lg font-semibold mb-1 hover:text-blue-600">ইন্টারনেট প্যাকেজ</h3>
+            <p class="text-gray-600 text-sm">www.banglalink.com</p>
+          <p class="text-gray-600 text-sm auto-date"></p>
+          </div>
+        </a>
+
+
+        <a href="https://www.bd.airtel.com/bn/offers?tab=internet" class="news-card">
+          <img src="https://images.seeklogo.com/logo-png/55/2/airtel-logo-png_seeklogo-556531.png" alt="airtel">
+          <div class="p-4">
+            <h3 class="text-lg font-semibold mb-1 hover:text-blue-600">ইন্টারনেট প্যাকেজ</h3>
+            <p class="text-gray-600 text-sm">www.airtel.com</p>
+          <p class="text-gray-600 text-sm auto-date"></p>
+          </div>
+        </a>
+
+
+        <a href="https://www.robi.com.bd/bn/offers?tab=internet" class="news-card">
+          <img src="https://images.seeklogo.com/logo-png/27/1/robi-logo-png_seeklogo-271552.png" alt="robi">
+          <div class="p-4">
+            <h3 class="text-lg font-semibold mb-1 hover:text-blue-600">ইন্টারনেট প্যাকেজ</h3>
+            <p class="text-gray-600 text-sm">www.robi.com</p>
+          <p class="text-gray-600 text-sm auto-date"></p>
+          </div>
+        </a>
+
+
+        <a href="https://www.teletalk.com.bd/bn/Internet-offers?type=regular&count=yes" class="news-card">
+          <img src="https://images.seeklogo.com/logo-png/38/2/teletalk-sim-operator-logo-png_seeklogo-388669.png" alt="teletalk">
+          <div class="p-4">
+            <h3 class="text-lg font-semibold mb-1 hover:text-blue-600">ইন্টারনেট প্যাকেজ</h3>
+            <p class="text-gray-600 text-sm">www.teletalk.com</p>
+          <p class="text-gray-600 text-sm auto-date"></p>
+          </div>
+        </a>
+
+
+      </div>
+      <div class="text-center mt-4">
+        <button type="button" onclick="showMore('internet-packages')" class="px-4 py-2 bg-red-600 text-white rounded">আরো দেখুন</button>
+      </div>
+    </div>
+
+    
+  </div>
+</div>
+
+<script>
+function getBanglaDate() {
+  const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const today = new Date();
+  const day = today.getDate().toString();
+  const month = months[today.getMonth()];
+  const year = today.getFullYear().toString();
+  return `${day} ${month} ${year}`;
+}
+
+function getTimeOfDay(hour) {
+  if(hour >= 0 && hour < 4) return 'এখন গভীর রাত';
+  if(hour >= 4 && hour < 6) return 'এখন ভোর';
+  if(hour >= 6 && hour < 12) return 'এখন সকাল';
+  if(hour >= 12 && hour < 15) return 'এখন দুপুর';
+  if(hour >= 15 && hour < 18) return 'এখন বিকেল';
+  if(hour >= 18 && hour < 21) return 'এখন সন্ধ্যা';
+  return 'এখন রাত';
+}
+
+function updateClock() {
+  const now = new Date();
+  let hours = now.getHours();
+  const minutes = now.getMinutes();
+  const seconds = now.getSeconds();
+  const ampm = hours >= 12 ? 'PM' : 'AM';
+  const displayHours = hours % 12 || 12;
+  document.getElementById('digitalClock').textContent = `${displayHours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')} ${ampm}`;
+  document.getElementById('timeOfDay').textContent = getTimeOfDay(hours);
+}
+
+setInterval(updateClock, 1000);
+
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll(".auto-date").forEach(el => el.textContent = getBanglaDate());
+  updateClock();
+
+  document.getElementById('gridBtn').addEventListener('click', () => toggleView('grid'));
+  document.getElementById('listBtn').addEventListener('click', () => toggleView('list'));
+
+  toggleView('grid');
+});
+
+function toggleView(mode) {
+  const containers = document.querySelectorAll('.news-container');
+  containers.forEach(container => {
+    const cards = Array.from(container.querySelectorAll('.news-card'));
+    if(mode === 'grid') {
+      container.classList.add('news-grid');
+      container.classList.remove('flex','flex-col','space-y-4');
+      cards.forEach((card, i) => {
+        card.classList.remove('list-card');
+        card.style.display = (i < 4) ? 'flex' : 'none';
+      });
+    } else {
+      container.classList.remove('news-grid');
+      container.classList.add('flex','flex-col','space-y-4');
+      cards.forEach((card, i) => {
+        card.classList.add('list-card');
+        card.style.display = (i < 4) ? 'flex' : 'none';
+      });
+    }
+  });
+}
+
+function showMore(containerId) {
+  const container = document.getElementById(containerId);
+  const cards = container.querySelectorAll('.news-card');
+  cards.forEach(card => card.style.display = 'flex');
+}
+</script>
+</body>
+</html>
