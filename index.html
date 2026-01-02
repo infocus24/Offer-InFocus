@@ -500,8 +500,10 @@ function updateClock() {
   const seconds = now.getSeconds();
   const ampm = hours >= 12 ? 'PM' : 'AM';
   const displayHours = hours % 12 || 12;
+
   document.getElementById('digitalClock').textContent =
     `${displayHours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')} ${ampm}`;
+
   document.getElementById('timeOfDay').textContent = getTimeOfDay(hours);
 }
 
@@ -512,28 +514,39 @@ document.addEventListener("DOMContentLoaded", function() {
   updateClock();
   document.getElementById('gridBtn').addEventListener('click', () => toggleView('grid'));
   document.getElementById('listBtn').addEventListener('click', () => toggleView('list'));
-  toggleView('grid'); // ডিফল্ট grid view
+  toggleView('grid');
 });
 
 function toggleView(mode) {
   const containers = document.querySelectorAll('.news-container');
+
   containers.forEach(container => {
     const cards = Array.from(container.querySelectorAll('.news-card'));
+
     if(mode === 'grid') {
       container.classList.add('news-grid');
       container.classList.remove('flex','flex-col','space-y-4');
-      cards.forEach((card,i) => { card.classList.remove('list-card'); card.style.display = (i<4)?'flex':'none'; });
+      cards.forEach((card,i) => {
+        card.classList.remove('list-card');
+        card.style.display = (i < 4) ? 'flex' : 'none';
+      });
     } else {
       container.classList.remove('news-grid');
       container.classList.add('flex','flex-col','space-y-2');
-      cards.forEach((card,i) => { card.classList.add('list-card'); card.style.display = (i<4)?'flex':'none'; });
+      cards.forEach((card,i) => {
+        card.classList.add('list-card');
+        card.style.display = (i < 4) ? 'flex' : 'none';
+      });
     }
   });
 }
 
 function showMore(containerId){
-  document.querySelectorAll(`#${containerId} .news-card`).forEach(card=>card.style.display='flex');
+  document
+    .querySelectorAll(`#${containerId} .news-card`)
+    .forEach(card => card.style.display = 'flex');
 }
 </script>
 </body>
 </html>
+
