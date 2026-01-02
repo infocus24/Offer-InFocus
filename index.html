@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>আজকের  অফার - InFocusNewsToday24</title>
+<title>আজকের অফার - InFocusNewsToday24</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
+  body { background: #fff; color: #111; }
   .news-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -21,55 +22,64 @@
     transition: transform 0.3s ease;
     min-height: 120px;
   }
-  .news-card img {
-    width: 100%;
-    height: 80px;
-    object-fit: cover;
-  }
+  .news-card img { width: 100%; height: 80px; object-fit: cover; }
   .news-card:hover { box-shadow: 0 3px 5px rgba(0,0,0,0.15); }
-  .list-card {
-    flex-direction: row;
-    min-height: 60px;
-  }
+  .list-card { flex-direction: row; min-height: 60px; }
   .list-card img { width: 80px; height: 60px; margin-right: 0.5rem; }
-  .toggle-btn {
-    padding: 0.4rem 0.8rem;
-    font-weight: 600;
-    border-radius: 0.5rem;
-    transition: all 0.3s;
-  }
+  .toggle-btn { padding: 0.4rem 0.8rem; font-weight: 600; border-radius: 0.5rem; transition: all 0.3s; }
   .grid-btn { background: linear-gradient(90deg, #1E3A8A, #3B82F6); color: white; }
   .list-btn { background: linear-gradient(90deg, #047857, #10B981); color: white; }
-  .header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
-  .digital-clock-container { text-align: center; }
-  .time-of-day { font-size: 1rem; font-weight: bold; color: #f59e0b; }
-  .digital-clock { font-size: 1.5rem; font-weight: bold; color: #1E3A8A; }
-  .category-container h2 {
-    border-bottom: 2px solid;
-    padding-bottom: 0.25rem;
-    margin-bottom: 0.5rem;
-  }
+  
+  /* Header */
+  .header-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 1rem; }
+  .header-left { text-align: left; }
+  .header-center { text-align: center; flex: 1; }
+  .header-right { text-align: right; display: flex; flex-direction: column; gap:0.25rem; }
+
+  /* Today compact */
+  #todayCompact, #gDate, #hDate, #bDate { font-size: 0.8rem; font-weight: bold; }
+  #timeOfDay { font-size: 1rem; font-weight: bold; }
+  #timeOfDay.colorful { color: #f59e0b; } /* কালারফুল সময় */
+  #digitalClock { font-size: 1rem; font-weight: bold; color: #1E3A8A; }
+
+  .category-container h2 { border-bottom: 2px solid; padding-bottom: 0.25rem; margin-bottom: 0.5rem; }
   .footer { text-align: center; padding: 1rem 0; margin-top: 2rem; font-weight: bold; color: #555; }
 </style>
 </head>
 <body class="bg-white text-gray-900">
 <div class="max-w-5xl mx-auto px-4 py-8">
+
   <!-- Header -->
   <div class="header-bar">
-    <div class="digital-clock-container">
-      <div class="time-of-day" id="timeOfDay">এখন সকাল</div>
-      <div class="digital-clock" id="digitalClock">00:00:00 AM</div>
+    <!-- Left: Digital Clock -->
+    <div class="header-left">
+      <div id="timeOfDay" class="colorful">এখন সকাল</div>
+      <div id="digitalClock">00:00:00 AM</div>
     </div>
-    <h1 class="text-2xl sm:text-3xl font-bold text-center mb-8 text-blue-700 flex-1">আজকের  অফার</h1>
+
+    <!-- Center: Title -->
+    <div class="header-center">
+      <h1 class="text-2xl sm:text-3xl font-bold text-blue-700">আজকের অফার</h1>
+    </div>
+
+    <!-- Right: Today Info (Compact) -->
+    <div class="header-right">
+      <div id="todayCompact">আজ "শুক্রবার" [ শীতকাল ]</div>
+      <div id="gDate">02-January-2026 [ খ্রিস্টাব্দ ]</div>
+      <div id="hDate">13-রজব-1447 [ হিজরি ]</div>
+      <div id="bDate">১৮-পৌষ-১৪৩২ [ বঙ্গাব্দ ]</div>
+    </div>
   </div>
-  
-  <!-- View Toggle -->
+
+  <!-- Grid/List Toggle Buttons -->
   <div class="flex justify-end gap-2 mb-6">
     <button id="gridBtn" class="toggle-btn grid-btn">Grid View</button>
     <button id="listBtn" class="toggle-btn list-btn">List View</button>
   </div>
 
+  <!-- Categories Example -->
   <div id="categories">
+
 
     <!-- Grameenphone -->
     <div class="category-container mb-6">
@@ -469,7 +479,6 @@
 
   </div>
 
-
   <!-- Footer -->
   <div class="footer">
     © 2026 - Powered by InFocusNewsToday
@@ -477,12 +486,57 @@
 </div>
 
 <script>
-function getBanglaDate() {
-  const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-  const today = new Date();
-  return `${today.getDate()} ${months[today.getMonth()]} ${today.getFullYear()}`;
+// ====== Compact Today Info ======
+const weekdayBn = ['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
+const monthToSeason = ["শীতকাল","শীতকাল","বসন্তকাল","বসন্তকাল","গ্রীষ্মকাল","গ্রীষ্মকাল","বর্ষাকাল","বর্ষাকাল","শরৎকাল","শরৎকাল","হেমন্তকাল","হেমন্তকাল"];
+const banglaMonths = ["বৈশাখ","জ্যৈষ্ঠ","আষাঢ়","শ্রাবণ","ভাদ্র","আশ্বিন","কার্তিক","অগ্রহায়ণ","পৌষ","মাঘ","ফাল্গুন","চৈত্র"];
+const hijriMonthsBn = ["মুহাররম","সফর","রবিউল আউয়াল","রবিউস সানি","জমাদিউল আউয়াল","জমাদিউস সানি","রজব","শাবান","রমজান","শাওয়াল","জিলকদ","জিলহজ্জ"];
+
+function pad(n){ return n.toString().padStart(2,'0'); }
+function toBengaliDigits(s){return String(s).split('').map(c=>{if(c>='0'&&c<='9'){const map={'0':'০','1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯'};return map[c];}return c;}).join('');}
+
+function getHijriParts(date){
+  const fmtEn = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', { day:'2-digit', month:'numeric', year:'numeric' });
+  const parts = fmtEn.formatToParts(date);
+  const day = parseInt(parts.find(p=>p.type==='day').value);
+  const monthIndex = parseInt(parts.find(p=>p.type==='month').value)-1;
+  const year = parseInt(parts.find(p=>p.type==='year').value);
+  return { d: day, mName: hijriMonthsBn[monthIndex], y: year };
 }
 
+function toBanglaDate(gDate){
+  const gY=gDate.getFullYear();
+  const startBoishakhThisYear=new Date(gY,3,14);
+  const base=(gDate>=startBoishakhThisYear)?gY:gY-1;
+  const starts=[new Date(base,3,14),new Date(base,4,15),new Date(base,5,15),new Date(base,6,16),new Date(base,7,16),new Date(base,8,16),new Date(base,9,17),new Date(base,10,16),new Date(base,11,16),new Date(base+1,0,15),new Date(base+1,1,13),new Date(base+1,2,15)];
+  let idx=11;
+  for(let i=0;i<starts.length;i++){
+    const start=starts[i];
+    const next=(i<starts.length-1)?starts[i+1]:new Date(base+1,3,14);
+    if(gDate>=start && gDate<next){idx=i;break;}
+  }
+  const day=Math.floor((gDate-starts[idx])/(1000*60*60*24))+1;
+  const banglaYear=base-593;
+  return {d:day,mIndex:idx,mName:banglaMonths[idx],y:banglaYear};
+}
+
+function updateCompactToday(){
+  const now = new Date();
+  const dayName = weekdayBn[now.getDay()];
+  const season = monthToSeason[now.getMonth()];
+  const gLine = `${pad(now.getDate())}-${now.toLocaleString('en-US',{month:'long'})}-${now.getFullYear()} [ খ্রিস্টাব্দ ]`;
+  const hij = getHijriParts(now);
+  const hLine = `${pad(hij.d)}-${hij.mName}-${hij.y} [ হিজরি ]`;
+  const b = toBanglaDate(now);
+  const bLine = `${toBengaliDigits(b.d)}-${b.mName}-${toBengaliDigits(b.y)} [ বঙ্গাব্দ ]`;
+
+  document.getElementById('todayCompact').innerText = `আজ "${dayName}" [ ${season} ]`;
+  document.getElementById('gDate').innerText = gLine;
+  document.getElementById('hDate').innerText = hLine;
+  document.getElementById('bDate').innerText = bLine;
+}
+
+// ====== Digital Clock ======
 function getTimeOfDay(hour) {
   if(hour >= 0 && hour < 4) return 'এখন গভীর রাত';
   if(hour >= 4 && hour < 6) return 'এখন ভোর';
@@ -503,15 +557,16 @@ function updateClock() {
 
   document.getElementById('digitalClock').textContent =
     `${displayHours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')} ${ampm}`;
-
-  document.getElementById('timeOfDay').textContent = getTimeOfDay(hours);
+  const todEl = document.getElementById('timeOfDay');
+  todEl.textContent = getTimeOfDay(hours);
+  todEl.classList.add('colorful');
 }
 
-setInterval(updateClock, 1000);
-
+// ====== Grid/List Toggle ======
 document.addEventListener("DOMContentLoaded", function() {
-  document.querySelectorAll(".auto-date").forEach(el => el.textContent = getBanglaDate());
-  updateClock();
+  document.querySelectorAll(".auto-date").forEach(el => el.textContent = new Date().toLocaleDateString('en-US'));
+  setInterval(updateCompactToday,1000);
+  setInterval(updateClock,1000);
   document.getElementById('gridBtn').addEventListener('click', () => toggleView('grid'));
   document.getElementById('listBtn').addEventListener('click', () => toggleView('list'));
   toggleView('grid');
@@ -519,34 +574,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function toggleView(mode) {
   const containers = document.querySelectorAll('.news-container');
-
   containers.forEach(container => {
     const cards = Array.from(container.querySelectorAll('.news-card'));
-
     if(mode === 'grid') {
       container.classList.add('news-grid');
       container.classList.remove('flex','flex-col','space-y-4');
-      cards.forEach((card,i) => {
-        card.classList.remove('list-card');
-        card.style.display = (i < 4) ? 'flex' : 'none';
-      });
+      cards.forEach((card,i) => { card.classList.remove('list-card'); card.style.display = (i<4)?'flex':'none'; });
     } else {
       container.classList.remove('news-grid');
       container.classList.add('flex','flex-col','space-y-2');
-      cards.forEach((card,i) => {
-        card.classList.add('list-card');
-        card.style.display = (i < 4) ? 'flex' : 'none';
-      });
+      cards.forEach((card,i) => { card.classList.add('list-card'); card.style.display = (i<4)?'flex':'none'; });
     }
   });
 }
 
 function showMore(containerId){
-  document
-    .querySelectorAll(`#${containerId} .news-card`)
-    .forEach(card => card.style.display = 'flex');
+  document.querySelectorAll(`#${containerId} .news-card`).forEach(card=>card.style.display='flex');
 }
 </script>
 </body>
 </html>
-
