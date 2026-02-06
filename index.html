@@ -493,11 +493,25 @@
   </div>
 
   <!-- Footer -->
-  <div class="footer">
-    © 2025 - Powered by InFocusNewsToday
-  </div>
+  <p style="
+    font-weight: 600;
+    font-size: 14px;
+    color: #1E3A8A;
+    text-align: center;
+    letter-spacing: 0.5px;
+    background: linear-gradient(to right, #1E3A8A, #3B82F6, #10B981, #F59E0B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  ">
+    Copyright © <span id="footerYear"></span> - Powered by - <strong>InFocusNewsToday24</strong> | All Rights Reserved
+  </p>
 </div>
 
+<script>
+  document.getElementById('footerYear').textContent = new Date().getFullYear();
+</script>
+</div>
+  
 <script>
 function updateHeaderDates() {
   const now = new Date();
@@ -598,6 +612,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 </body>
 </html>
+
 
 
 
