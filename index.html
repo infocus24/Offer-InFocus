@@ -577,11 +577,11 @@ function toggleView(mode) {
     if(mode==='grid') {
       container.classList.add('news-grid');
       container.classList.remove('flex','flex-col','space-y-4');
-      cards.forEach((card,i)=>{ card.classList.remove('list-card'); card.style.display=(i<3)?'flex':'none'; });
+      cards.forEach((card,i)=>{ card.classList.remove('list-card'); card.style.display=(i<4)?'flex':'none'; });
     } else {
       container.classList.remove('news-grid');
       container.classList.add('flex','flex-col','space-y-2');
-      cards.forEach((card,i)=>{ card.classList.add('list-card'); card.style.display=(i<3)?'flex':'none'; });
+      cards.forEach((card,i)=>{ card.classList.add('list-card'); card.style.display=(i<4)?'flex':'none'; });
     }
   });
 }
@@ -612,6 +612,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 </body>
 </html>
+
 
 
 
